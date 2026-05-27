@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>⚡ My Sweet Romance : จำลองใช้ชีวิตเป็นน้องตองขาไพ่ DEMO ⚡</title>
+    <style>
+        /* ตกแต่งหน้าตาเกมให้ดูละมุน สไตล์เกมเกาหลี/ญี่ปุ่น */
+        body { font-family: 'Arial', sans-serif; background-color: #ffe4e1; text-align: center; padding-top: 30px; }
+        .game-container { background-color: #fff0f5; border: 4px dashed #ff69b4; width: 450px; margin: 0 auto; border-radius: 20px; padding: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        
+        /* ตกแต่งรูปภาพหนุ่มหล่อ */
+        .character-img { width: 280px; height: 350px; object-fit: cover; border-radius: 15px; border: 3px solid #ffb6c1; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        /* กล่องคำพูดและชื่อตัวละคร */
+        .char-name-box { background-color: #ff69b4; color: white; display: inline-block; padding: 5px 15px; border-radius: 10px; font-weight: bold; font-size: 16px; margin-bottom: 5px; }
+        .dialogue-box { background-color: white; border: 2px solid #ffb6c1; border-radius: 10px; padding: 15px; min-height: 70px; margin-bottom: 20px; font-size: 18px; color: #333; line-height: 1.5; }
+        
+        /* ปุ่มเลือกตอบ (Choices) */
+        .choice-btn { background-color: #ffb6c1; color: white; border: none; padding: 12px; width: 100%; font-size: 16px; border-radius: 25px; cursor: pointer; margin-bottom: 10px; font-weight: bold; transition: 0.2s; }
+        .choice-btn:hover { background-color: #ff69b4; transform: scale(1.02); }
+        .heart-score { font-size: 20px; color: #ff1493; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <h2 style="color: #ff69b4; margin-top: 0;">💕 จำลองใช้ชีวิตเป็นน้องตองขาไพ่💕</h2>
+        
+        <div class="heart-score">ค่าความประทับใจ: <span id="heart-count">❤️</span></div>
+
+        <img id="char-avatar" class="character-img" src="https://i.pinimg.com/1200x/10/f4/99/10f499c3d8c6b29913d4fb44c45a05a0.jpg" alt="ผู้กองเสกสรร">
+        
+        <br>
+        <div class="char-name-box" id="char-name">ผู้กองเสกสรร (ร้อยตำรวจเอก ประจำสภ.เมืองภูสอยดาว)</div>
+
+        <div id="story-text" class="dialogue-box">
+            "อ้าว... บังเอิญจังเลยครับ ที่คุณมาอยู่ตรงนี้.. ตอนที่ผมกำลังลงพื้นที่จับวงไพ่พอดี"
+        </div>
+
+        <div id="choices-container">
+            <button class="choice-btn" onclick="chooseOption(1)">"บังเอิญจังเลยค่ะ หนูก็เพิ่งผ่านมาทางนี้ ผู้กองจับวงไพ่อีกแล้วหรือคะ แบบนี้ไม่เหนื่อยแย่เลยหรือคะ"</button>
+            <button class="choice-btn" onclick="chooseOption(2)">"ค-ค่ะ..ผู้กอง.. หนูไม่ได้ทำตัวมีพิรุธอะไรนะคะ"</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        // ฟังก์ชันเมื่อผู้เล่นกดชอยส์เลือกตอบ
+        function chooseOption(choice) {
+            let story = document.getElementById("story-text");
+            let avatar = document.getElementById("char-avatar");
+            let choices = document.getElementById("choices-container");
+            let heartDisplay = document.getElementById("heart-count");
+
+            // ด่านที่ 1 ---------------------------------------
+            if (currentStep === 1) {
+                if (choice === 1) {
+                    // ตอบดี: คะแนนเพิ่ม + เปลี่ยนเป็นรูปหนุ่มส่งยิ้มหวานอารมณ์ดี
+                    heartDisplay.innerText = "❤️❤️ (ผู้กองเสกสรรยิ้ม หน้าแก้มและใบหูแต้มสีแดงขึ้นมา)";
+                    avatar.src = "https://i.pinimg.com/736x/e1/e0/d5/e1e0d5ca0359c4192d8585209213bf66.jpg"; 
+                    story.innerText = `"ไม่เหนื่อยหรอกครับถ้าเป็นเรื่องดูแลความสงบเรียบร้อยของบ้านเมือง"`;
+                } else {
+                    // ตอบนิ่ง: คะแนนเท่าเดิม + เปลี่ยนเป็นหนุ่มหน้าเศร้า/เหงาๆ หน่อย
+                    heartDisplay.innerText = "❤️ (หน้านิ่งมาก สายตาดูจับผิด)";
+                    avatar.src = "https://i.pinimg.com/736x/44/a0/6d/44a06da4f49589e6d7b25ccdb202309e.jpg"; 
+                    story.innerText = `"ครับ ไม่มีตรงไหนพิรุธเลย คุณเดินมาจากทางไหนหรือครับ คล้ายๆ ทางที่พวกวงไพ่เพิ่งแตกกระเจิงกันมา แล้วในมือขวาของคุณคือ..?"`;
+                }
+                
+                // อัปเดตชอยส์ของด่านที่ 2
+                choices.innerHTML = `
+                    <button class="choice-btn" onclick="chooseOption(3)">"ผู้กองรู้ไหมคะ ว่าจริงๆ แล้ว.. ที่แม่ป้าพากันเล่นไพ่.. ก็เพราะว่า พวกเขาอยากใกล้ชิดผู้กองไงคะ"</button>
+                    <button class="choice-btn" onclick="chooseOption(4)">"พวกเล่นไพ่นี่แย่จริงๆ เลยนะคะ หนูน่ะไม่ชอบการพนันเลยค่ะผู้กอง"</button>
+                `;
+                currentStep = 2;
+
+            // ด่านที่ 2 (เข้าสู่บทสรุป) ---------------------------
+            } else if (currentStep === 2) {
+                if (choice === 3) {
+                    // แฮปปี้เอนดิ้ง: เปลี่ยนเป็นรูปภาพฟีลแฟน นั่งมองกล้องแบบอบอุ่น
+                    heartDisplay.innerText = "💖💖💖 [HAPPY ENDING!]";
+                    avatar.src = "https://i.pinimg.com/736x/a0/aa/4f/a0aa4f796a4b2654491312bb1b039733.jpg";
+                    document.getElementById("char-name").innerText = "ซ้อตอง คุณนายผู้กอง (สถานะเลื่อนขั้นจาก ผู้ต้องหา สู่ คุณนายผู้กอง)";
+                    story.innerText = `"สารภาพรักกันตรงๆ แบบนี้ ผมไม่ลดโทษให้หรอกนะครับ" (ยินดีด้วย! คุณได้เป็นคุณนายผู้กองแล้ว >0<)`;
+                } else if (choice === 4) {
+                    // นอร์มอลเอนดิ้ง: เปลี่ยนเป็นรูปยิ้มหัวเราะแบบเป็นกันเอง
+                    heartDisplay.innerText = "💛💛 [NORMAL ENDING]";
+                    avatar.src = "https://i.pinimg.com/736x/52/f1/c9/52f1c9799430f437c1a230b35f180e05.jpg";
+                    story.innerText = `"ไม่ชอบการพนัน แล้วดอกจิกในมือที่ติดมาด้วยคืออะไรหรือครับ" (ได้เป็นสิงห์สาวนักพนัน)`;
+                }
+                
+                // แสดงปุ่มเพื่อรีเซ็ตเริ่มเกมใหม่
+                choices.innerHTML = `<button class="choice-btn" style="background-color: #333;" onclick="window.location.reload()">เริ่มจีบใหม่อีกรอบ 🔄</button>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
